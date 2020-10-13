@@ -15,7 +15,7 @@ var date_from = 1392577232;
 var date_to = new Date();
 date_to = date_to.getTime()/1000;
 console.log(date_to)
-fetch("https://api.coingecko.com/api/v3/coins/bitcoin/market_chart/range?vs_currency=usd&from=1392577232&to="+date_to).
+fetch("https://api.coingecko.com/api/v3/coins/bitcoin/market_chart/range?vs_currency=usd&from=1230940800&to="+date_to).
 then(data=>{return data.json()})
 .then(res=>{
     console.log(res)
