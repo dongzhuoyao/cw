@@ -23,7 +23,7 @@ var requestOptions = {
 
 
 
-fetch("https://api.coincap.io/v2/assets/bitcoin/history?interval=d1&start=1230940800000&end="+date_to, requestOptions)
+fetch("https://api.coincap.io/v2/assets/chainlink/history?interval=d1&start=1230940800000&end="+date_to, requestOptions)
   .then(response => response.json())
   .then(response=>{
 res = response['data']  
@@ -78,7 +78,7 @@ option = {
     },
     title: {
         left: 'center',
-        text: 'BTC Price History',
+        text: 'Chainlink Price History',
     },
     toolbox: {
         feature: {
@@ -120,7 +120,7 @@ option = {
 	    },
     series: [
         {
-            name: 'BTC price',
+            name: 'Chainlink price',
             type: 'line',
             smooth: false,
             symbol: 'none',
@@ -139,27 +139,6 @@ option = {
             },
             data: my_prices
         },
-
-        {
-            name: 'Continue pump 6 days',
-            type: 'scatter',
-            smooth: false,
-            symbolSize: 14,
-            sampling: 'average',
-            itemStyle: {
-                color: 'rgb(70, 255, 131)'
-            },
-            areaStyle: {
-                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                    offset: 0,
-                    color: 'rgb(255, 158, 68)'
-                }, {
-                    offset: 1,
-                    color: 'rgb(255, 70, 131)'
-                }])
-            },
-            data: continue_6days
-        }
     ]
 };
 

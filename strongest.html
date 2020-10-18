@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <!-- including ECharts file -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@4.9.0/dist/echarts.common.min.js"></script>
+</head>
+<body>
+    <!-- prepare a DOM container with width and height -->
+    <div id="main" style="width: 1600px;height:800px;"></div>
+    <script type="text/javascript">
+
+
+var my_res = 0;
+fetch("https://api.coingecko.com/api/v3/coins/bitcoin/market_chart/range?vs_currency=usd&from=1230940800&to=").
+then(data=>{return data.json()})
+.then(res=>{
+    console.log(res);
+    my_res = res;
+
+})
+console.log(my_res);
+
+
+    </script>
+</body>
+</html>
