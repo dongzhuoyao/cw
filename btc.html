@@ -49,9 +49,10 @@ for (var i=0;i<data_num;i++){
          var price = res[i]['priceUsd'];
          var thetime = res[i]['time'];
         console.log(price)
-        my_prices.push(price)
         var now = new Date(thetime) 
-        my_date.push([now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/'));
+        date_str = [now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/');
+        my_prices.push([date_str,price])
+        my_date.push(date_str);
         
         if (i>7 && 
             my_prices[i]>my_prices[i-1] &&
@@ -59,13 +60,13 @@ for (var i=0;i<data_num;i++){
             my_prices[i-2]>my_prices[i-3] && 
             my_prices[i-3]>my_prices[i-4] &&
             my_prices[i-4]>my_prices[i-5] &&
-            my_prices[i-5]>my_prices[i-6]){
-                continue_6days.push(price);
+            my_prices[i-5]>my_prices[i-6]+100){
+                continue_6days.push([date_str,price]);
             }
-        else{
-                continue_6days.push(0);
-        }
 }
+
+continue_6days = continue_6days[1200]
+console.log(continue_6days);
 
 
 
@@ -78,7 +79,7 @@ option = {
     },
     title: {
         left: 'center',
-        text: 'BTC Price History',
+        text: 'BTC Big Event',
     },
     toolbox: {
         feature: {
@@ -91,8 +92,8 @@ option = {
     },
     xAxis: {
         type: 'category',
-        boundaryGap: false,
-        data: my_date
+        //boundaryGap: true,
+        //data: my_date
     },
     yAxis: {
         type: 'value',
@@ -119,6 +120,7 @@ option = {
 	    	data: ['ssss', 'd']
 	    },
     series: [
+        /*
         {
             name: 'BTC price',
             type: 'line',
@@ -138,25 +140,16 @@ option = {
                 }])
             },
             data: my_prices
-        },
+        },*/
 
         {
             name: 'Continue pump 6 days',
             type: 'scatter',
-            smooth: false,
+            //smooth: false,
             symbolSize: 14,
-            sampling: 'average',
+            //sampling: 'average',
             itemStyle: {
                 color: 'rgb(70, 255, 131)'
-            },
-            areaStyle: {
-                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                    offset: 0,
-                    color: 'rgb(255, 158, 68)'
-                }, {
-                    offset: 1,
-                    color: 'rgb(255, 70, 131)'
-                }])
             },
             data: continue_6days
         }
